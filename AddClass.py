@@ -37,6 +37,10 @@ for word in words_list:
 words2index = {w:i for i, w in index2words.items()}
 print(words2index)
 
-
+def tupleToArray(str_tuple)->list:
+    str_tuple = str(str_tuple).strip("{}")
+    str_tuple = str_tuple.split(' ')
+    str_tuple = [word.strip('"(),''') for word in str_tuple]
+    return(str_tuple)
 
 
