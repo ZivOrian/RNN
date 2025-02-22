@@ -22,7 +22,8 @@ class Attention(nn.Module):
         hidden_state = torch.bmm(attention, values)
         return hidden_state
 
-SOS_token = 0 #Start of Sequence
+#Test section (main) - relevant but after attempting to implement the attention mechanism
+"""SOS_token = 0 #Start of Sequence
 EOS_token = 1 #End of Sequence
 
 index2words = {
@@ -35,12 +36,11 @@ words_list = set(words.lower().split(' '))
 for word in words_list:
     index2words[len(index2words)] = word
 words2index = {w:i for i, w in index2words.items()}
-print(words2index)
+print(words2index)"""
 
 def tupleToArray(str_tuple)->list:
     str_tuple = str(str_tuple).strip("{}")
     str_tuple = str_tuple.split(' ')
-    str_tuple = [word.strip('"(),''') for word in str_tuple]
-    return(str_tuple)
-
-
+    str_tuple = [word.strip("(),'") for word in str_tuple]
+    return [word.strip('"') for word in str_tuple]
+    
