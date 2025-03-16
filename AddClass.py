@@ -1,6 +1,12 @@
 import torch
 from torch import nn
 import torch.nn.functional as F
+import re
+
+
+
+
+
 
 class Attention(nn.Module):
     def __init__(self, d_in, d_out):
@@ -21,6 +27,12 @@ class Attention(nn.Module):
         attention = F.softmax(scores, dim=2)
         hidden_state = torch.bmm(attention, values)
         return hidden_state
+
+
+
+
+
+#review_set = {word.replace('/', '') for word in review_set}
 
 #Test section (main) - relevant but after attempting to implement the attention mechanism
 """SOS_token = 0 #Start of Sequence
@@ -43,4 +55,12 @@ def tupleToArray(str_tuple)->list:
     str_tuple = str_tuple.split(' ')
     str_tuple = [word.strip("(),'") for word in str_tuple]
     return [word.strip('"') for word in str_tuple]
-    
+
+
+
+
+def organize_text(txt_array) -> list:
+    review_set = [word.replace('\\', '') for sentence in txt_array
+               for word in re.split(',| ',sentence)]
+    #review_set = [word.replace('\\', '') for word in review_set]
+    return review_set
